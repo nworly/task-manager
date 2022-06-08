@@ -8,19 +8,35 @@ import java.net.Socket;
 import java.util.Random;
 
 public class Client {
-    public static char pickRandomChar() {
-        String chars = "ABCDEFG";
-        return chars.charAt(new Random().nextInt(chars.length()));
-    }
 
     public static void main(String[] args) throws IOException {
         try (
-            Socket socket = new Socket("localhost", 8989);
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                Socket socket = new Socket("localhost", 8989);
+                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
         ) {
-            out.println("{ \"type\": \"ADD\", \"task\": \"task #" + pickRandomChar() + "\" }");
+
+            out.println("{ \"type\": \"ADD\", \"task\": \"View reports on the work of managers" + "\" }");
             System.out.println(in.readLine());
+
+            out.println("{ \"type\": \"ADD\", \"task\": \"Check the sales plan" + "\" }");
+            System.out.println(in.readLine());
+
+            out.println("{ \"type\": \"ADD\", \"task\": \"Check the contract with Luxoft" + "\" }");
+            System.out.println(in.readLine());
+
+            out.println("{ \"type\": \"ADD\", \"task\": \"Listen to call recordings" + "\" }");
+            System.out.println(in.readLine());
+
+            out.println("{ \"type\": \"ADD\", \"task\": \"Hold a meeting with managers" + "\" }");
+            System.out.println(in.readLine());
+
+            out.println("{ \"type\": \"REMOVE\", \"task\": \"Check the sales plan" + "\" }");
+            System.out.println(in.readLine());
+
+            out.println("{ \"type\": \"REMOVE\", \"task\": \"Check the contract with Luxoft" + "\" }");
+            System.out.println(in.readLine());
+
         }
     }
 }
